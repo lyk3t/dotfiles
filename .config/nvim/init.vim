@@ -9,24 +9,16 @@
 " Specify a directory for plugins.
 call plug#begin()
 
-" trying some different color schemes
-Plug 'kristijanhusak/vim-hybrid-material'
-
-" checkout and decide which one
+" colors colors colors
 Plug 'ayu-theme/ayu-vim'
 Plug 'ayu-theme/ayu-vim-airline'
 Plug 'arcticicestudio/nord-vim'
-Plug 'rakr/vim-one'
-Plug 'joshdick/onedark.vim'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'haishanh/night-owl.vim'
-" Plug 'hzchirs/vim-material'
-Plug 'SpaceVim/vim-material'
+
 " nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+Plug 'christoomey/vim-tmux-navigator'
 " Automatically clear search highlights after you move your cursor.
 Plug 'haya14busa/is.vim'
 
@@ -41,6 +33,10 @@ Plug 'jiangmiao/auto-pairs'
 
 " Copy to system clipboard
 Plug 'christoomey/vim-system-copy'
+
+
+" Some IDE style
+Plug 'liuchengxu/vim-which-key'
 
 " TODO: Launch Ranger from Vim.
 "Plug 'francoiscabrol/ranger.vim'
@@ -201,11 +197,11 @@ set whichwrap=b,s,<,>
 set wildmode=full
 set wrap
 
-if exists('termguicolors')
+" if exists('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
-endif
+" endif
 "]"
 "]"
 " fix the colro problem with vim colorschemes and terminal background
@@ -232,10 +228,46 @@ endif
 " inoremap <A-k> <Esc>:m .-2<CR>==gi
 " vnoremap <A-j> :m '>+1<CR>gv=gv
 " vnoremap <A-k> :m '<-2<CR>gv=gv
+call which_key#register('<Space>', "g:which_key_map")
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+
+let g:which_key_map = {}
+
+" Windoooooooows
+let g:which_key_map['w'] = {
+    \ 'name' : '+window' ,
+    \ 'w' : ['<C-W>w'    , 'other-window'] ,
+    \ 'd' : ['<C-W>c'    , 'delete-window'] ,
+    \ }
+
+" TODO: Buffeeeeeers
+let g:which_key_map['b'] = {
+    \ 'name' : '+buffer' ,
+    \ }
+
+" TODO: Files
+let g:which_key_map['f'] = {
+    \ 'name' : '+file'
+    \ }
+
+" TODO: Search
+let g:which_key_map['s'] = {
+    \ 'name' : '+search'
+    \ }
+
+" TODO: git
+let g:which_key_map['g'] = {
+    \ 'name' : '+git'
+    \ }
+
+" TODO: project
+" TODO: workspace
 
 " shortcuts for vimrc
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :vsp $HOME/.config/nvim/init.vim<CR>
+nnoremap <leader>sv :source $HOME/.config/nvim/init.vim<CR>
 
 " save with zz
 nnoremap zz :update<cr>
@@ -294,7 +326,7 @@ map <leader>q :bn<CR>
 " set background=dark
 " colorscheme minimalist
 " set background=dark
-set termguicolors
+" set termguicolors
 let ayucolor="dark"
 colorscheme ayu
 

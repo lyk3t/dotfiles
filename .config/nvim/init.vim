@@ -11,10 +11,15 @@ call plug#begin()
 
 " trying some different color schemes
 Plug 'kristijanhusak/vim-hybrid-material'
+
+" checkout and decide which one
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
-
+Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'haishanh/night-owl.vim'
 
 " nerdtree
 Plug 'scrooloose/nerdtree'
@@ -161,7 +166,7 @@ set showcmd
 set autoindent
 set autoread
 set expandtab
-set t_Co=256"
+" set t_Co=256"
 set cursorline
 set wildmenu
 set hidden
@@ -282,7 +287,7 @@ map <leader>q :bn<CR>
 
 " hybrid material
 " set background=dark
-colorscheme nord
+colorscheme night-owl
 
 " set background=dark
 " colorscheme minimalist

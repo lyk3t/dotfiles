@@ -12,6 +12,7 @@ call plug#begin()
 " trying some different color schemes
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -280,8 +281,8 @@ map <leader>q :bn<CR>
 " -----------------------------------------------------------------------------
 
 " hybrid material
-set background=dark
-colorscheme hybrid_material
+" set background=dark
+colorscheme nord
 
 " set background=dark
 " colorscheme minimalist

@@ -20,6 +20,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'haishanh/night-owl.vim'
+Plug 'hzchirs/vim-material'
 
 " nerdtree
 Plug 'scrooloose/nerdtree'
@@ -166,7 +167,7 @@ set showcmd
 set autoindent
 set autoread
 set expandtab
-" set t_Co=256"
+set t_Co=256"
 set cursorline
 set wildmenu
 set hidden
@@ -199,7 +200,7 @@ set whichwrap=b,s,<,>
 set wildmode=full
 set wrap
 
-if exists('+termguicolors')
+if exists('termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
@@ -210,7 +211,7 @@ endif
 " highlight Normal ctermbg=NONE
 " highlight Normal ctermbg=NONE
 " adds blue highlight to vim in visual mode selections
-highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
+" highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 
 "" -----------------------------------------------------------------------------
 " Basic Mapping
@@ -287,7 +288,7 @@ map <leader>q :bn<CR>
 
 " hybrid material
 " set background=dark
-colorscheme night-owl
+colorscheme vim-material
 
 " set background=dark
 " colorscheme minimalist

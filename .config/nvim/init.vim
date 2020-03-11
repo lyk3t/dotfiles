@@ -14,14 +14,15 @@ Plug 'kristijanhusak/vim-hybrid-material'
 
 " checkout and decide which one
 Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim-airline'
 Plug 'arcticicestudio/nord-vim'
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'haishanh/night-owl.vim'
-Plug 'hzchirs/vim-material'
-
+" Plug 'hzchirs/vim-material'
+Plug 'SpaceVim/vim-material'
 " nerdtree
 Plug 'scrooloose/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -288,16 +289,17 @@ map <leader>q :bn<CR>
 
 " hybrid material
 " set background=dark
-colorscheme vim-material
+" colorscheme ayu
 
 " set background=dark
 " colorscheme minimalist
 " set background=dark
-" let ayucolor="mirage"
-" colorscheme ayu
+set termguicolors
+let ayucolor="dark"
+colorscheme ayu
 
 " set ariline theme
-let g:airline_theme='powerlineish'
+let g:airline_theme='ayu_dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 

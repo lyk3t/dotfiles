@@ -149,7 +149,7 @@ set ruler
 set noerrorbells visualbell t_vb=
 set clipboard=unnamedplus
 set encoding=utf-8
-let mapleader = ","
+let mapleader = " "
 set wrap
 set textwidth=0
 set tabstop=2
@@ -186,7 +186,7 @@ set splitright
 set textwidth=0
 set ttimeout
 set ttyfast
-set ttymouse=sgr
+" set ttymouse=sgr
 set undodir=/tmp
 " set virtualedit
 set whichwrap=b,s,<,>
@@ -212,18 +212,18 @@ highlight Visual cterm=bold ctermbg=Blue ctermfg=NONE
 " -----------------------------------------------------------------------------
 
 " move lines with alt + j and alt + k
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" let c='a'
+" while c <= 'z'
+"   exec "set <A-".c.">=\e".c
+"   exec "imap \e".c." <A-".c.">"
+"   let c = nr2char(1+char2nr(c))
+" endw
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " shortcuts for vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>

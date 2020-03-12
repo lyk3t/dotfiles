@@ -138,126 +138,55 @@ draw_bold_text_with_bright_colors: false
 # Colors
 colors:
   primary:
-    background: '#0A0E14'
-    foreground: '#B3B1AD'
+    background: '#1e282d'
+    foreground: '#c4c7d1'
 
   # Normal colors
   normal:
-    black: '#01060E'
-    red: '#EA6C73'
-    green: '#91B362'
-    yellow: '#F9AF4F'
-    blue: '#53BDFA'
-    magenta: '#FAE994'
-    cyan: '#90E1C6'
-    white: '#C7C7C7'
+    black:   '#666666'
+    red:     '#eb606b'
+    green:   '#c3e88d'
+    yellow:  '#f7eb95'
+    blue:    '#80cbc4'
+    magenta: '#ff2f90'
+    cyan:    '#aeddff'
+    white:   '#ffffff'
 
   # Bright colors
   bright:
-    black: '#686868'
-    red: '#F07178'
-    green: '#C2D94C'
-    yellow: '#FFB454'
-    blue: '#59C2FF'
-    magenta: '#FFEE99'
-    cyan: '#95E6CB'
-    white: '#FFFFFF'
+    black:   '#ff262b'
+    red:     '#eb606b'
+    green:   '#c3e88d'
+    yellow:  '#f7eb95'
+    blue:    '#7dc6bf'
+    magenta: '#6c71c4'
+    cyan:    '#35434d'
+    white:   '#ffffff'
   # primary:
-  #   background: '0x2E3440'
-  #   foreground: '0xD8DEE9'
-  # cursor:
-  #   text: '0x2E3440'
-  #   cursor: '0xD8DEE9'
-  # normal:
-  #   black: '0x3B4252'
-  #   red: '0xBF616A'
-  #   green: '0xA3BE8C'
-  #   yellow: '0xEBCB8B'
-  #   blue: '0x81A1C1'
-  #   magenta: '0xB48EAD'
-  #   cyan: '0x88C0D0'
-  #   white: '0xE5E9F0'
-  # bright:
-  #   black: '0x4C566A'
-  #   red: '0xBF616A'
-  #   green: '0xA3BE8C'
-  #   yellow: '0xEBCB8B'
-  #   blue: '0x81A1C1'
-  #   magenta: '0xB48EAD'
-  #   cyan: '0x8FBCBB'
-  #   white: '0xECEFF4'
-  # Default colors
-  # primary:
-  #   background: '0x263238'
-  #   foreground: '0xeceff1'
+  #   background: '0x0A0E14'
+  #   foreground: '0xecf0f1'
 
   # # Normal colors
   # normal:
-  #   black:   '0x263238'
-  #   red:     '0xff9800'
-  #   green:   '0x8bc34a'
-  #   yellow:  '0xffc107'
-  #   blue:    '0x03a9f4'
-  #   magenta: '0xe91e63'
-  #   cyan:    '0x009688'
-  #   white:   '0xcfd8dc'
+  #   black: '0x000000'
+  #   red: '0xE54B4B"'
+  #   green: '0x9ECE58'
+  #   yellow: '0xFAED70'
+  #   blue: '0x396FE2'
+  #   magenta: '0xBB80B3'
+  #   cyan: '0x2DDAFD'
+  #   white: '0xd0d0d0'
 
   # # Bright colors
   # bright:
-  #   black:   '0x37474f'
-  #   red:     '0xffa74d'
-  #   green:   '0x9ccc65'
-  #   yellow:  '0xffa000'
-  #   blue:    '0x81d4fa'
-  #   magenta: '0xad1457'
-  #   cyan:    '0x26a69a'
-  #   white:   '0xeceff1'
-  # # Colors that should be used to draw the terminal cursor. If these are unset,
-  # # the cursor colour will be the inverse of the cell colour.
-  # # cursor:
-  # #   text: '0x2e2e2d'
-  # #   # text: '0x000000'
-  # #   cursor: '0xffffff'
-
-  # # Dim colors (Optional)
-  # dim:
-  #   black:   '0x333333'
-  #   red:     '0xf2777a'
-  #   green:   '0x99cc99'
-  #   yellow:  '0xffcc66'
-  #   blue:    '0x6699cc'
-  #   magenta: '0xcc99cc'
-  #   cyan:    '0x66cccc'
-  #   white:   '0xdddddd'
-
-  # Tomorrow Night Bright
-  # primary:
-  #   background: '0x000000'
-  #   foreground: '0xeaeaea'
-  #
-  # cursor:
-  #   text: '0x000000'
-  #   cursor: '0xffffff'
-  #
-  # normal:
-  #   black:   '0x000000'
-  #   red:     '0xd54e53'
-  #   green:   '0xb9ca4a'
-  #   yellow:  '0xe6c547'
-  #   blue:    '0x7aa6da'
-  #   magenta: '0xc397d8'
-  #   cyan:    '0x70c0ba'
-  #   white:   '0xffffff'
-  #
-  # bright:
-  #   black:   '0x666666'
-  #   red:     '0xff3334'
-  #   green:   '0x9ec400'
-  #   yellow:  '0xe7c547'
-  #   blue:    '0x7aa6da'
-  #   magenta: '0xb77ee0'
-  #   cyan:    '0x54ced6'
-  #   white:   '0xffffff'
+  #   black: '0x6b6b6b'
+  #   red: '0xFF5370'
+  #   green: '0xC3E88D'
+  #   yellow: '0xFFCB6B'
+  #   blue: '0x82AAFF'
+  #   magenta: '0xC792EA'
+  #   cyan: '0x89DDFF'
+  #   white: '0xffffff'
 
   # Indexed Colors
   #

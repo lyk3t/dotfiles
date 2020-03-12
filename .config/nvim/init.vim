@@ -115,6 +115,7 @@ Plug 'pangloss/vim-javascript' "JS highlighting
 Plug 'mxw/vim-jsx' "JSX syntax highlighting
 Plug 'jparise/vim-graphql' "graphql syntax highlighting
 Plug 'digitaltoad/vim-pug' "Pug highlighting
+Plug 'dart-lang/dart-vim-plugin'
 
 " fzf
 Plug '~/.oh-my-zsh/custom/plugins/fzf'

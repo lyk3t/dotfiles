@@ -235,7 +235,7 @@ vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
 let g:which_key_map = {}
 
-" Windoooooooows
+" TODO: Windoooooooows
 let g:which_key_map['w'] = {
     \ 'name' : '+window' ,
     \ 'w' : ['<C-W>w'    , 'other-window'] ,
@@ -243,8 +243,15 @@ let g:which_key_map['w'] = {
     \ }
 
 " TODO: Buffeeeeeers
+noremap <silent> <leader>bd :bd<CR>
+noremap <silent> <leader>bn :bp<CR>
+noremap <silent> <leader>bq :bn<CR>
+
 let g:which_key_map['b'] = {
     \ 'name' : '+buffer' ,
+    \ 'd' : 'delete-buffer' ,
+    \ 'n' : 'next-buffer' ,
+    \ 'p' : 'previos-buffer' ,
     \ }
 
 " TODO: Files
@@ -266,8 +273,8 @@ let g:which_key_map['g'] = {
 " TODO: workspace
 
 " shortcuts for vimrc
-nnoremap <leader>ev :vsp $HOME/.config/nvim/init.vim<CR>
-nnoremap <leader>sv :source $HOME/.config/nvim/init.vim<CR>
+nnoremap <silent> <leader>ev :vsp $HOME/.config/nvim/init.vim<CR>
+nnoremap <silent> <leader>sv :source $HOME/.config/nvim/init.vim<CR>
 
 " save with zz
 nnoremap zz :update<cr>
@@ -310,10 +317,6 @@ xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 " Clear search highlights.
 map <Leader><Space> :let @/=''<CR>"
 
-" close buffer
-map <leader>d :bd<CR>
-map <leader>p :bp<CR>
-map <leader>q :bn<CR>
 
 " -----------------------------------------------------------------------------
 " Color settings
@@ -437,7 +440,11 @@ nnoremap <silent> <Leader>l :Lines<CR>
 
 " Allow passing optional flags into the Rg command.
 "   Example: :Rg myterm -g '*.md'
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+" command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 " vim-systemcopy mandatory mapping for WSL. Do delete on pure Linux
 let g:system_copy#copy_command='clip.exe'

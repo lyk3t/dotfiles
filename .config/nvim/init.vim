@@ -10,8 +10,9 @@
 call plug#begin()
 
 " colors colors colors
-Plug 'ayu-theme/ayu-vim'
-Plug 'ayu-theme/ayu-vim-airline'
+" Plug 'ayu-theme/ayu-vim'
+Plug 'dom-mages/ayu-vim'
+" Plug 'ayu-theme/ayu-vim-airline'
 Plug 'arcticicestudio/nord-vim'
 
 " nerdtree

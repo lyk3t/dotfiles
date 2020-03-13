@@ -246,8 +246,8 @@ let g:which_key_map['w'] = {
 
 " TODO: Buffeeeeeers
 noremap <silent> <leader>bd :bd<CR>
-noremap <silent> <leader>bn :bp<CR>
-noremap <silent> <leader>bq :bn<CR>
+noremap <silent> <leader>bp :bp<CR>
+noremap <silent> <leader>bn :bn<CR>
 
 let g:which_key_map['b'] = {
     \ 'name' : '+buffer' ,

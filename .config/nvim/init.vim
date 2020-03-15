@@ -266,9 +266,31 @@ let g:which_key_map['s'] = {
     \ 'name' : '+search'
     \ }
 
-" TODO: git
+" git
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gS :Git add %<CR>
+noremap <leader>gU :Git reset -q %<CR>
+noremap <leader>gc :Git commit<CR>
+noremap <leader>gp :Gpush<CR>
+noremap <leader>gd :Gdiff<CR>
+noremap <leader>gA :Git add .<CR>
+noremap <leader>gb :Gblam<CR>
+noremap <leader>gl :Git log<CR>
+noremap <leader>gL :Git log %<CR>
+" TODO: do i want hunks?
+
 let g:which_key_map['g'] = {
-    \ 'name' : '+git'
+    \ 'name' : '+git',
+    \ 's' : 'git status' ,
+    \ 'S' : 'stage current file' ,
+    \ 'U' : 'unstage current file' ,
+    \ 'c' : 'git commit' ,
+    \ 'p' : 'git push' ,
+    \ 'd' : 'view git diff' ,
+    \ 'A' : 'stage all files' ,
+    \ 'b' : 'git blame' ,
+    \ 'l' : 'git log repository' ,
+    \ 'L' : 'git log current file' ,
     \ }
 
 " TODO: project
@@ -318,6 +340,9 @@ xnoremap <silent> s* "sy:let @/=@s<CR>cgn
 
 " Clear search highlights.
 map <Leader><Space> :let @/=''<CR>"
+
+" Terminal mappings
+tnoremap <Esc> <C-\><C-n>
 
 
 " -----------------------------------------------------------------------------

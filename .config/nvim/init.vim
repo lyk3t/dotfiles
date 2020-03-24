@@ -116,6 +116,7 @@ Plug 'mxw/vim-jsx' "JSX syntax highlighting
 Plug 'jparise/vim-graphql' "graphql syntax highlighting
 Plug 'digitaltoad/vim-pug' "Pug highlighting
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'thosakwe/vim-flutter'
 
 " fzf
 Plug '~/.oh-my-zsh/custom/plugins/fzf'
@@ -296,7 +297,34 @@ let g:which_key_map['g'] = {
 " TODO: project
 " TODO: workspace
 
-" shortcuts for vimrc
+" TODO: dev
+" futter
+noremap <leader>dfa :FlutterRun<CR>
+noremap <leader>dfq :FlutterQuit<CR>
+noremap <leader>dfr :FlutterHotReload<CR>
+noremap <leader>dfR :FlutterHotRestart<CR>
+noremap <leader>dfD :FlutterVisualDebug<CR>
+noremap <leader>dfd :FlutterDevices<CR>
+noremap <leader>dfs :FlutterSplit<CR>
+noremap <leader>dfS :FlutterVSplit<CR>
+
+let g:which_key_map['d'] = {
+    \ 'name' : '+dev',
+    \ 'f' : {
+        \ 'name': '+flutter',
+        \ 'a': 'flutter run',
+        \ 'q': 'flutter quit',
+        \ 'r': 'flutter hot reload',
+        \ 'R': 'flutter hot restart',
+        \ 'D': 'flutter visual debug',
+        \ 'd': 'open output in buffer',
+        \ 's': 'open output in h split',
+        \ 'S': 'open output in v split',
+        \ }
+    \ }
+
+
+"shortcuts for vimrc
 nnoremap <silent> <leader>ev :vsp $HOME/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>sv :source $HOME/.config/nvim/init.vim<CR>
 

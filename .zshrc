@@ -186,7 +186,7 @@ fi
 cd ~
 
 alias vim="nvim"
-alias emustart="/opt/android-sdk/emulator/emulator -verbose -use-system-libs -avd dev"
+alias emustart="emulator -avd Pixel_3_XL_API_29"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

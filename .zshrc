@@ -129,7 +129,7 @@ emailsvc() {
 
 getOrderContent(){
 if [ "$1" != "" ]; then
-  scp -r ws65loc-cs.boc-cloud.com:/var/spool/boc_order/$1 /d/orders
+  scp -r 10.21.14.65:/var/spool/boc_order/$1 /d/orders
   explorer.exe "D:\\orders\\$1"
 else
   echo "You have to provide the order timestamp to identify the necessary dir"

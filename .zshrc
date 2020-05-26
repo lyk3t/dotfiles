@@ -101,7 +101,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # environments
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export PATH=$PATH:$HOME/.local/bin:$HOME/dev/flutter/bin
 export DOCKER_HOST=tcp://localhost:2375
 # functions

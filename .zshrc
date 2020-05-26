@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 
 # environments
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "\!.git/*" --glob "\!node_modules/*"'
 export PATH=$PATH:$HOME/.local/bin:$HOME/dev/flutter/bin
 export DOCKER_HOST=tcp://localhost:2375
 # functions

@@ -101,8 +101,9 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # environments
-# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "\!.git/*" --glob "\!node_modules/*"'
+# export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "\!node_modules/" --glob "\!.git/"'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 export PATH=$PATH:$HOME/.local/bin:$HOME/dev/flutter/bin
 export DOCKER_HOST=tcp://localhost:2375
 # functions

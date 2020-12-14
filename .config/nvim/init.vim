@@ -257,6 +257,34 @@ let g:which_key_map['b'] = {
     \ 'p' : 'previos-buffer' ,
     \ }
 
+" .............................................................................
+" junegunn/fzf.vim
+" .............................................................................
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+" Launch fzf with CTRL+P.
+nnoremap <silent> <Leader>. :Files<CR>
+nnoremap <silent> <Leader>, :Buffers<CR>
+let g:which_key_map['.'] = {
+    \ 'name' : 'find file' ,
+    \ }
+let g:which_key_map[','] = {
+    \ 'name' : 'switch buffer' ,
+    \ }
+
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+" command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+" Map a few common things to do with FZF.
+nnoremap <silent> <Leader>l :Lines<CR>
+
+
 " TODO: Files
 let g:which_key_map['f'] = {
     \ 'name' : '+file'
@@ -479,27 +507,6 @@ command! -nargs=0 Format :call CocAction('format')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" .............................................................................
-" junegunn/fzf.vim
-" .............................................................................
-
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
-" Launch fzf with CTRL+P.
-nnoremap <silent> <C-p> :FZF -m<CR>
-
-" Map a few common things to do with FZF.
-nnoremap <silent> <Leader><Enter> :Buffers<CR>
-nnoremap <silent> <Leader>a :Buffers<CR>
-nnoremap <silent> <Leader>l :Lines<CR>
-
-" Allow passing optional flags into the Rg command.
-"   Example: :Rg myterm -g '*.md'
-" command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
 
 " vim-systemcopy mandatory mapping for WSL. Do delete on pure Linux
 let g:system_copy#copy_command='clip.exe'

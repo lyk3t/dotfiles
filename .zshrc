@@ -18,7 +18,7 @@ export MYVIMRC=$HOME/.vimrc
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="agnoster"
-ZSH_THEME=powerlevel10k/powerlevel10k
+# ZSH_THEME=powerlevel10k/powerlevel10k
 eval `dircolors ~/.dircolors/dircolors.256dark`
 
 # Set list of themes to pick from when loading at random
@@ -176,6 +176,7 @@ alias -g ll='ls -alF'
 alias -g la='ls -A'
 alias -g l='ls -CF'
 alias -g mem="ps -eo pmem,pcpu,vsize,pid,cmd | sort -k 1 -nr | head -5"
+alias joplin="~/.joplin/Joplin.AppImage"
 
 # load the other files
 if [ -f ~/.bocrc ]; then
@@ -191,5 +192,8 @@ alias vim="nvim"
 alias emustart="emulator -avd Pixel_3_XL_API_29"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+
+
+eval "$(starship init zsh)"

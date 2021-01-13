@@ -136,7 +136,6 @@ Plug 'tpope/vim-surround'
 
 " Statusbar
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 "Icons for filetypes
 Plug 'ryanoasis/vim-devicons' 
@@ -413,13 +412,11 @@ tnoremap <Esc> <C-\><C-n>
 " colorscheme minimalist
 " set background=dark
 " set termguicolors
-let ayucolor="dark"
-colorscheme ayu
+" let ayucolor="dark"
+colorscheme nord
 
 " set ariline theme
-let g:airline_theme='ayu_dark'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='nord'
 
 " Turn on syntax highlighting
 syntax on

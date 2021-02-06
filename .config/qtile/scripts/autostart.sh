@@ -17,7 +17,7 @@ function run {
 #xrandr --output LVDS1 --mode 1366x768 --output DP3 --mode 1920x1080 --right-of LVDS1
 #xrandr --output HDMI2 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off
 # xrandr --output DP-0 --pos -2560x0
-xrandr --output DP-0 --left-of HDMI-0
+xrandr --output DP-0 --right-of HDMI-0
 
 #change your keyboard if you need it
 #setxkbmap -layout be
@@ -37,7 +37,7 @@ xrandr --output DP-0 --left-of HDMI-0
 #starting utility applications at boot time
 # run variety &
 run nm-applet &
-run pamac-tray &
+# run pamac-tray &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &

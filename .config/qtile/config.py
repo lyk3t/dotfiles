@@ -7,6 +7,7 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
 
+from custom.windowname import WindowName as CustomWindowName
 #mod4 or mod = super key
 mod = "mod4"
 mod1 = "alt"
@@ -50,9 +51,19 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc= "Toggle fullscreen"
         ),
+    Key([mod, "shift"], "f",
+        lazy.spawn("firefox"),
+        desc= "Spawn default browser"
+        ),
+    Key([mod, "shift"], "j",
+        lazy.spawn("/home/dom/.joplin/Joplin.AppImage"),
+        desc= "Spawn default browser"
+        ),
     Key([mod], "b",
         lazy.spawn("brave"),
-        desc= "Spawn default browser"
+        ),
+    Key([mod, "shift"], "b",
+        lazy.spawn("google-chrome-stable"),
         ),
     # Key([mod], "f",
     #     lazy.spawn("brave"),
@@ -252,7 +263,7 @@ keys = [
 
 
 # FLIP LAYOUT FOR MONADTALL/MONADWIDE
-    Key([mod, "shift"], "f", lazy.layout.flip()),
+    # Key([mod, "shift"], "f", lazy.layout.flip()),
 
 # FLIP LAYOUT FOR BSP
     # Key([mod, "mod1"], "k", lazy.layout.flip_up()),
@@ -279,48 +290,44 @@ groups = [
     Group(
         "1",
         layout="monadtall",
-        label=""
+        label=""
     ),
     Group(
         "2",
         matches=[Match(wm_class=["firefox"])],
         layout="monadtall",
-        label=""
+        label=""
     ),
     Group(
         "3",
         layout="monadtall",
-        label=""
+        label=""
     ),
     Group(
         "4",
         # label=""
         layout="max",
         matches=[Match(wm_class=["Virtualbox"])],
-        label=""
+        label=""
     ),
     Group(
         "5",
         matches=[Match(wm_class=["Thunderbird"])],
         layout="monadtall",
-        label=""
+        label=""
     ),
     Group(
       "6",
         layout="monadtall",
-        label=""
+        label=""
     ),
     Group(
         "7",
         layout="monadtall",
-        label=""
+        label=""
     ),
     ]
 
-# group_labels = ["", "", "", "", "", "", "", "", "", "",]
-
-# group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
-#group_layouts = ["monadtall", "matrix", "monadtall", "bsp", "monadtall", "matrix", "monadtall", "bsp", "monadtall", "monadtall",]
 
 for i in groups:
     keys.extend([
@@ -337,6 +344,9 @@ for i in groups:
     ])
 
 
+def open_pavu():
+    qtile.cmd_spawn("pavucontrol")
+
 def init_layout_theme():
     return {"margin":5,
             "border_width":2,
@@ -344,11 +354,18 @@ def init_layout_theme():
             "border_normal": "#4c566a"
             }
 
-layout_theme = init_layout_theme()
+layout_theme = {
+    "border_width": 3,
+    "margin": 9,
+    "border_focus": "3b4252",
+    "border_normal": "3b4252",
+    "font": "FiraCode Nerd Font",
+    "grow_amount": 2,
+    }
 
 layouts = [
         #layout.MonadWide(**layout_theme),
-        #layout.Bsp(**layout_theme),
+        layout.Bsp(**layout_theme),
         #layout.Stack(stacks=2, **layout_theme),
         #layout.Columns(**layout_theme),
         #layout.RatioTile(**layout_theme),
@@ -358,72 +375,118 @@ layouts = [
         # layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
         layout.MonadTall(**layout_theme),
         layout.Max(**layout_theme),
-        layout.Tile(shift_windows=True, **layout_theme),
+        # layout.Tile(shift_windows=True, **layout_theme),
         layout.Stack(num_stacks=2),
-        layout.TreeTab(
-             font = "Ubuntu",
-             fontsize = 10,
-             sections = ["FIRST", "SECOND"],
-             section_fontsize = 11,
-             bg_color = "141414",
-             active_bg = "90C435",
-             active_fg = "000000",
-             inactive_bg = "384323",
-             inactive_fg = "a0a0a0",
-             padding_y = 5,
-             section_top = 10,
-             panel_width = 320
-             ),
+        # layout.TreeTab(
+        #      font = "Ubuntu",
+        #      fontsize = 10,
+        #      sections = ["FIRST", "SECOND"],
+        #      section_fontsize = 11,
+        #      bg_color = "141414",
+        #      active_bg = "90C435",
+        #      active_fg = "000000",
+        #      inactive_bg = "384323",
+        #      inactive_fg = "a0a0a0",
+        #      padding_y = 5,
+        #      section_top = 10,
+        #      panel_width = 320
+        #      ),
         layout.Floating(**layout_theme)
 ]
 
 
-colors = dict(
-        bg_dark= "#2E3440",
-        bg_light= "#88C0D0",
-        bg_focused= "#3B4252",
-        fg_unused= "#4C566A",
-        fg_used= "#D8Dee9",
-        fg_highlight= "#D08770"
-        ) 
+# colors = dict(
+#         bg_dark= "#2E3440",
+#         bg_light= "#88C0D0",
+#         bg_focused= "#3B4252",
+#         fg_unused= "#4C566A",
+#         fg_used= "#D8Dee9",
+#         fg_highlight= "#D08770"
+#         ) 
+
+colors = [
+    ["#2e3440", "#2e3440"],  # background
+    ["#d8dee9", "#d8dee9"],  # foreground
+    ["#3b4252", "#3b4252"],  # background lighter
+    ["#bf616a", "#bf616a"],  # red
+    ["#a3be8c", "#a3be8c"],  # green
+    ["#ebcb8b", "#ebcb8b"],  # yellow
+    ["#81a1c1", "#81a1c1"],  # blue
+    ["#b48ead", "#b48ead"],  # magenta
+    ["#88c0d0", "#88c0d0"],  # cyan
+    ["#e5e9f0", "#e5e9f0"],  # white
+    ["#4c566a", "#4c566a"],  # grey
+    ["#d08770", "#d08770"],  # orange
+    ["#8fbcbb", "#8fbcbb"],  # super cyan
+    ["#5e81ac", "#5e81ac"],  # super blue
+    ["#242831", "#242831"],  # super dark background
+]
 
 
 # WIDGETS FOR THE BAR
-
 widget_defaults = dict(
-    font="Hack Nerd Font",
-    fontsize = 14,
-    padding = 2,
-    background=colors["bg_dark"]
+    font="FiraCode Nerd Font", fontsize=18, padding=3, background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
 
-# left_sep = ""
-sep = ""
-# right_sep = ""
+group_box_settings = {
+    "padding": 5,
+    "borderwidth": 4,
+    "active": colors[1],
+    "inactive": colors[10],
+    "disable_drag": True,
+    "rounded": True,
+    "highlight_color": colors[0],
+    "block_highlight_text_color": colors[8],
+    "highlight_method": "line",
+    "this_current_screen_border": colors[8],
+    "this_screen_border": colors[1],
+    "other_current_screen_border": colors[0],
+    "other_screen_border": colors[0],
+    "foreground": colors[1],
+    "background": colors[0],
+}
 
-separator_defaults = dict(
-    font="FiraCode Nerd Font Mono",
-    fontsize=33,
-    padding=0
-)
 
 def init_widgets_list():
     # prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+        widget.Sep(
+            linewidth=20,
+            foreground=colors[0],
+            background=colors[0],
+            padding=10,
+            size_percent=40,
+        ),
+        widget.CurrentLayoutIcon(
+            custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
+            foreground=colors[2],
+            background=colors[0],
+            padding=-2,
+            scale=0.45,
+        ),
+        widget.Sep(
+            linewidth=20,
+            foreground=colors[0],
+            background=colors[0],
+            padding=10,
+            size_percent=40,
+        ),
         widget.GroupBox(
-            background=colors["bg_dark"],
-            active=colors["fg_used"],
-            block_highlight_text_color=colors["bg_light"],
-            highlight_color=colors["bg_dark"],
-            highlight_method="line",
-            borderwidth=0,
-            rounded=False,
-            inactive=colors["fg_unused"],
-            margin_y=3,
-            margin_x=2,
-            padding_x=8,
-            fmt="<b>{}</b>",
+            **group_box_settings
+            # background=colors["bg_dark"],
+            # active=colors["fg_used"],
+            # padding: 5,
+            # block_highlight_text_color=colors["bg_light"],
+            # highlight_color=colors["bg_dark"],
+            # highlight_method="line",
+            # borderwidth=4,
+            # rounded=False,
+            # inactive=colors["fg_unused"],
+            # margin_y=3,
+            # margin_x=2,
+            # padding_x=8,
+            # fmt="<b>{}</b>",
             # visible_groups=group_names, # Fix bug of extra groups appearing from default config
         ),
         # widget.TextBox(
@@ -435,25 +498,143 @@ def init_widgets_list():
         #     background=colors["bg_light"],
         #     foreground=colors["bg_dark"]
         # ),
-        widget.TaskList(
-           fontsize=16,
-           background=colors["bg_dark"],
-           border=colors["bg_focused"],
-           borderwidth=2,
-           highlight_method="block",
-           # icon_size=20,
-           margin_y=3,
-           margin_x=3,
-           padding_x=3,
-           padding_y=3,
-           spacing=0,
-           # max_title_width=24,
-           # markup_floating="",
-           # markup_focused="<span underline=”low”>{}</span>",
-           # markup_maximized="",
-           # markup_minimized="",
-           # markup_normal="",
+        widget.Spacer(),
+        widget.TextBox(
+            text=" ",
+            foreground=colors[12],
+            background=colors[0],
+            # fontsize=38,
+            font="Font Awesome 5 Free Solid",
         ),
+        # TODO: can i actually make that to an impressive tasklist?
+        CustomWindowName(
+            background=colors[0],
+            foreground=colors[12],
+            width=bar.CALCULATED,
+            empty_group_string="Desktop",
+            max_chars=165,
+            # mouse_callbacks={"Button2": kill_window},
+        ),
+        widget.Spacer(),
+        widget.CheckUpdates(
+            background=colors[0],
+            foreground=colors[3],
+            colour_have_updates=colors[3],
+            custom_command="./.config/qtile/updates-arch-combined",
+            display_format=" {updates}",
+            # execute=update,
+            padding=20,
+        ),
+        # widget.GenPollText(
+        #    func=updates,
+        #    update_interval=300,
+        #    foreground=colors[3],
+        #    mouse_callbacks={"Button1": update},
+        # ),
+        widget.Sep(
+            linewidth=20,
+            foreground=colors[0],
+            padding=10,
+            size_percent=50,
+        ),
+        widget.TextBox(
+            text=" ",
+            foreground=colors[8],
+            background=colors[0],
+            font="Font Awesome 5 Free Solid",
+            # fontsize=38,
+        ),
+        widget.PulseVolume(
+            foreground=colors[8],
+            background=colors[0],
+            limit_max_volume="True",
+            mouse_callbacks={"Button3": open_pavu},
+        ),
+        widget.Sep(
+            linewidth=20,
+            foreground=colors[0],
+            padding=10,
+            size_percent=50,
+        ),
+        # TODO: enable Bluetooth and WLAN for notebook
+        # widget.TextBox(
+        #     text="",
+        #     foreground=colors[14],
+        #     background=colors[0],
+        #     fontsize=28,
+        #     padding=0,
+        # ),
+        # widget.GenPollText(
+        #     func=bluetooth,
+        #     background=colors[14],
+        #     foreground=colors[6],
+        #     update_interval=3,
+        #     mouse_callbacks={
+        #         "Button1": toggle_bluetooth,
+        #         "Button3": open_bt_menu,
+        #     },
+        # ),
+        # widget.TextBox(
+        #     text="",
+        #     foreground=colors[14],
+        #     background=colors[0],
+        #     fontsize=28,
+        #     padding=0,
+        # ),
+        # widget.Sep(
+        #     linewidth=0,
+        #     foreground=colors[2],
+        #     padding=10,
+        #     size_percent=50,
+        # ),
+        # widget.TextBox(
+        #     text="",
+        #     foreground=colors[14],
+        #     background=colors[0],
+        #     fontsize=28,
+        #     padding=0,
+        # ),
+        # widget.TextBox(
+        #     text=" ",
+        #     font="Font Awesome 5 Free Solid",
+        #     foreground=colors[7],  # fontsize=38
+        #     background=colors[14],
+        # ),
+        # widget.Wlan(
+        #     interface="wlan0",
+        #     format="{essid}",
+        #     foreground=colors[7],
+        #     background=colors[14],
+        #     padding=5,
+        #     # mouse_callbacks={"Button1": open_connman},
+        # ),
+        # widget.TextBox(
+        #     text="",
+        #     foreground=colors[14],
+        #     background=colors[0],
+        #     fontsize=28,
+        #     padding=0,
+        # ),
+        # widget.TaskList(
+        #    fontsize=14,
+        #    background=colors[0],
+        #    border=colors[2],
+        #    borderwidth=0,
+        #    highlight_method="block",
+        #    icon_size=0,
+        #    margin_y=3,
+        #    margin_x=3,
+        #    padding_x=3,
+        #    padding_y=3,
+        #    spacing=0,
+        #    # max_title_width=24,
+        #    # markup_floating="",
+        #    # markup_focused="<span underline=”low”>{}</span>",
+        #    # markup_maximized="",
+        #    # markup_minimized="",
+        #    # markup_normal="",
+        # ),
+        # widget.Spacer(),
         # widget.Systray(
         #     padding=5,
         #     background=colors["bg_light"]
@@ -480,114 +661,152 @@ def init_widgets_list():
         #     volume_app="pavucontrol",
         #     background=colors["volume_bg"],
         # ),
-       widget.TextBox(
-                font="FontAwesome",
-                text="  ",
-                foreground=colors["fg_used"],
-                background=colors["bg_dark"],
-                padding = 0,
-                fontsize=16
-                ),
-       widget.Memory(
-                font="Noto Sans",
-                format = '{MemUsed}M/{MemTotal}M',
-                update_interval = 1,
-                fontsize = 12,
-                foreground = colors["fg_used"],
-                background = colors["bg_dark"],
-               ),
+       # widget.TextBox(
+       #          font="FontAwesome",
+       #          text="  ",
+       #          foreground=colors["fg_used"],
+       #          background=colors["bg_dark"],
+       #          padding = 0,
+       #          fontsize=16
+       #          ),
+       # widget.Memory(
+       #          font="Noto Sans",
+       #          format = '{MemUsed}M/{MemTotal}M',
+       #          update_interval = 1,
+       #          fontsize = 12,
+       #          foreground = colors["fg_used"],
+       #          background = colors["bg_dark"],
+       #         ),
+        # widget.TextBox(
+            # # **separator_defaults,
+            # text=sep,
+            # foreground=colors["fg_unused"],
+            # background=colors["bg_dark"],
+            # fontsize=37
+        # ),
+        # widget.TextBox(
+        #     # **separator_defaults,
+        #     text=sep,
+        #     foreground=colors["fg_unused"],
+        #     background=colors["bg_dark"],
+        #     fontsize=37
+        # ),
+        # widget.Net(
+        #      interface = "enp2s0",
+        #      format = '{down} ↓↑ {up}',
+        #      foreground = colors["fg_used"],
+        #      background = colors["bg_dark"],
+        #      padding = 5
+        # ),
+      # widget.TextBox(
+      #          text = " ⟳",
+      #          padding = 2,
+      #          foreground = colors["fg_used"],
+      #          background = colors["bg_dark"],
+      #          fontsize = 14
+      #          ),
+      #   widget.Pacman(
+      #          update_interval = 1800,
+      #          foreground = colors["fg_used"],
+      #          mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerminal + ' -e sudo pacman -Syu')},
+      #          background = colors["bg_dark"]
+      #   ),
+      # widget.TextBox(
+      #          text = "Updates",
+      #          padding = 5,
+      #          mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerminal + ' -e sudo pacman -Syu')},
+      #          foreground = colors["fg_used"],
+      #          background = colors["bg_dark"]
+      #          ),
+        # widget.TextBox(
+        #     # **separator_defaults,
+        #     text="",
+        #     font="FiraCode Nerd Font Mono",
+        #     fontsize=20,
+        #     padding=0,
+        #     background=colors["bg_dark"],
+        # ),
+        # widget.Volume(
+        #     step=5,
+        #     padding=0,
+        #     margin=0,
+        #     volume_app="pavucontrol",
+        #     fmt=" {0} ",
+        #     background=colors["bg_dark"],
+        # ),
+        # widget.TextBox(
+        #     # **separator_defaults,
+        #     text=sep,
+        #     foreground=colors["fg_unused"],
+        #     background=colors["bg_dark"],
+        #     fontsize=37
+        # ),
+        # widget.Clock(
+        #     background=colors[0],
+        #     foreground=colors[1],
+        #     format='%d %B | %H:%M',
+        #     padding=4,
+        #     mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn(calendar)},
+        # ),
+        # widget.TextBox(
+        #     # **separator_defaults,
+        #     text=sep,
+        #     foreground=colors[10],
+        #     background=colors[0],
+        #     fontsize=37
+        # ),
+        # widget.Systray(
+        #     padding=5,
+        #     background=colors[0]
+        # ),
+        # widget.TextBox(
+        #     # **separator_defaults,
+        #     text=sep,
+        #     foreground=colors[10],
+        #     background=colors[0],
+        #     fontsize=37
+        # ),
+        # widget.CurrentLayoutIcon(
+        #       custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+        #       foreground = colors[1],
+        #       background = colors[0],
+        #       padding = 0,
+        #       scale = 0.7
+        # ),
         widget.TextBox(
-            # **separator_defaults,
-            text=sep,
-            foreground=colors["fg_unused"],
-            background=colors["bg_dark"],
-            fontsize=37
-        ),
-        widget.Net(
-             interface = "enp2s0",
-             format = '{down} ↓↑ {up}',
-             foreground = colors["fg_used"],
-             background = colors["bg_dark"],
-             padding = 5
-        ),
-        widget.TextBox(
-            # **separator_defaults,
-            text=sep,
-            foreground=colors["fg_unused"],
-            background=colors["bg_dark"],
-            fontsize=37
-        ),
-      widget.TextBox(
-               text = " ⟳",
-               padding = 2,
-               foreground = colors["fg_used"],
-               background = colors["bg_dark"],
-               fontsize = 14
-               ),
-        widget.Pacman(
-               update_interval = 1800,
-               foreground = colors["fg_used"],
-               mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerminal + ' -e sudo pacman -Syu')},
-               background = colors["bg_dark"]
-        ),
-      widget.TextBox(
-               text = "Updates",
-               padding = 5,
-               mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerminal + ' -e sudo pacman -Syu')},
-               foreground = colors["fg_used"],
-               background = colors["bg_dark"]
-               ),
-        widget.TextBox(
-            # **separator_defaults,
-            text=sep,
-            foreground=colors["fg_unused"],
-            background=colors["bg_dark"],
-            fontsize=37
-        ),
-        widget.TextBox(
-            # **separator_defaults,
-            text="",
-            font="FiraCode Nerd Font Mono",
-            fontsize=20,
-            padding=0,
-            background=colors["bg_dark"],
-        ),
-        widget.Volume(
-            step=5,
-            padding=0,
-            margin=0,
-            volume_app="pavucontrol",
-            fmt=" {0} ",
-            background=colors["bg_dark"],
-        ),
-        widget.TextBox(
-            # **separator_defaults,
-            text=sep,
-            foreground=colors["fg_unused"],
-            background=colors["bg_dark"],
-            fontsize=37
+            text=" ",
+            font="Font Awesome 5 Free Solid",
+            foreground=colors[5],  # fontsize=38
+            background=colors[0],
         ),
         widget.Clock(
-            background=colors["bg_dark"],
-            foreground=colors["fg_used"],
-            format='%d %B | %H:%M',
-            fmt="<span font_family='Fira Code Nerd Font' size='larger'> </span> {}",
-            padding=4,
-            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn(calendar)},
+            format="%a, %b %d",
+            background=colors[0],
+            foreground=colors[5],
+        ),
+        widget.Sep(
+            linewidth=20,
+            foreground=colors[0],
+            padding=10,
+            size_percent=50,
         ),
         widget.TextBox(
-            # **separator_defaults,
-            text=sep,
-            foreground=colors["fg_unused"],
-            background=colors["bg_dark"],
-            fontsize=37
+            text=" ",
+            font="Font Awesome 5 Free Solid",
+            foreground=colors[4],  # fontsize=38
+            background=colors[0],
         ),
-        widget.CurrentLayoutIcon(
-              custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-              foreground = colors["fg_used"],
-              background = colors["bg_dark"],
-              padding = 0,
-              scale = 0.7
+        widget.Clock(
+            format="%I:%M %p",
+            foreground=colors[4],
+            background=colors[0],
+            # mouse_callbacks={"Button1": todays_date},
+        ),
+        widget.Sep(
+            linewidth=20,
+            foreground=colors[0],
+            padding=10,
+            size_percent=50,
         ),
                # widget.GroupBox(font="FontAwesome",
                #          fontsize = 24,
@@ -765,6 +984,20 @@ def init_widgets_list():
 
 widgets_list = init_widgets_list()
 
+# screens = [
+#     Screen(
+#         wallpaper="~/Pictures/dnord4k_dark.png",
+#         wallpaper_mode="fill",
+#         top=bar.Bar(
+#             widgets_list,
+#             48,
+#             margin=[0, -4, 21, -4],
+#         ),
+#         bottom=bar.Gap(18),
+#         left=bar.Gap(18),
+#         right=bar.Gap(18),
+#     ),
+# ]
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
@@ -779,8 +1012,8 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26))]
+    return [Screen(top=bar.Bar(init_widgets_screen1(), 32, margin=[0, -4, 21, -4]), bottom=bar.Gap(18), left=bar.Gap(18), right=bar.Gap(18)),
+            Screen(top=bar.Bar(init_widgets_screen1(), 32, margin=[0, -4, 21, -4]), bottom=bar.Gap(18), left=bar.Gap(18), right=bar.Gap(18))]
 screens = init_screens()
 
 

@@ -19,7 +19,7 @@ export MYVIMRC=$HOME/.vimrc
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="agnoster"
 # ZSH_THEME=powerlevel10k/powerlevel10k
-eval `dircolors ~/.dircolors/dircolors.256dark`
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

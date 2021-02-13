@@ -1,4 +1,4 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -17,6 +17,7 @@ export MYVIMRC=$HOME/.vimrc
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="aloy/aloy"
 # ZSH_THEME="agnoster"
 # ZSH_THEME=powerlevel10k/powerlevel10k
 test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
@@ -104,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "\!node_modules/" --glob "\!.git/"'
 # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden'
 export FZF_DEFAULT_COMMAND='ag -g ""'
-export PATH=$PATH:$HOME/.local/bin:$HOME/dev/flutter/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/dev/flutter/bin:$HOME/go/bin
 export DOCKER_HOST=tcp://localhost:2375
 # functions
 # short scripts that are not exluded in a own file

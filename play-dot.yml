@@ -1,0 +1,55 @@
+- name: shell stuff
+  hosts: localhost
+  connection: local
+  tasks:
+      - name: install zsh, tmux, fzf and neovim
+        become: true
+        ansible.builtin.apt:
+            name: 
+                - zsh
+                - tmux
+                - fzf
+                - neovim
+            state: latest
+      - name: install oh my zsh
+        git:
+          repo: https://github.com/robbyrussell/oh-my-zsh.git
+          dest: ~/.oh-my-zsh
+      - name: install zsh syntax highlighting
+        git:
+          repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+          dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+      - name: download fzf plugin for zsh
+        git:
+          repo: https://github.com/junegunn/fzf.git
+          dest: ~/.oh-my-zsh/custom/plugins/fzf
+      - name: install fzf plugin for zsh
+        command: ~/.oh-my-zsh/custom/plugins/fzf/install --bin
+      - name: install fzf-zsh
+        git:
+          repo: https://github.com/Treri/fzf-zsh.git
+          dest: ~/.oh-my-zsh/custom/plugins/fzf-zsh
+      - name: install zsh-nvm
+        git:
+          repo: https://github.com/lukechilds/zsh-nvm
+          dest: ~/.oh-my-zsh/custom/plugins/zsh-nvm
+      - name: install spaceship prompt
+        command: curl -fsSL https://starship.rs/install.sh | bash
+      - name: install tpm for tmux
+        git:
+          repo: https://github.com/tmux-plugins/tpm
+          dest: ~/.tmux/plugins/tpm
+      - name: copy plug.vim
+        command: curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      - name: install nvim plugins
+        command: nvim +PlugInstall +qall
+      - name: "manual TODOs:"
+        debug:
+          msg:
+           - "Following steps must be done to finalize the setup:"
+           - "Please execute 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' in your console"
+           - "Please execute 'nvim +PlugInstall +qall' in your console"
+           - "Open 'tmux'"
+           - "Press Ctrl + A + I"
+           - "Please execute 'chsh -s /usr/bin/zsh' in your console"
+           - "Restart terminals"

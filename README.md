@@ -14,6 +14,14 @@ dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 ```
 
+install dependencies via playbook:
+```
+sudo apt get ansible
+ansible-playbook play-dot.yml
+```
+and follow the finishing steps from the output
+
+### Steps should be obsolete if you follow the ansible way
 dependencies can be installed with
 ```
 yay -S zsh tmux fzf
